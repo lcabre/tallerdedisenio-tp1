@@ -42,8 +42,9 @@
 		<!--clases persistibles-->
 		<property name="packagesToScan">
 			<list>
-				<value>ar.edu.unlam.tallerweb1.modelo</value>
-				<value>ar.edu.unlam.ejercicio1.modelo</value>
+				<!--<value>ar.edu.unlam.tallerweb1.modelo</value>-->
+				<!--<value>ar.edu.unlam.ejercicio1</value>-->
+				<value>ar.edu.unlam.tp1</value>
 			</list>
 		</property>
 	</bean>
