@@ -41,7 +41,7 @@ public class TestTP1 extends SpringTest {
     @Test
     @Transactional
     @Rollback()
-    public void testQueBusqueTodasLasFarmaciasdeUnBarrio(){//Ejercicio 3
+    public void testQueBusqueTodasLasFarmaciasdeUnBarrio(){//Ejercicio 4
         Barrio barrio1 = new Barrio("Constitucion");
         getSession().save(barrio1);
 
