@@ -9,6 +9,7 @@ import org.junit.Test;
 import org.springframework.test.annotation.Rollback;
 import org.springframework.transaction.annotation.Transactional;
 
+
 import java.util.List;
 
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -16,7 +17,8 @@ import static org.hamcrest.Matchers.is;
 
 public class TestTP1 extends SpringTest {
 
-    @Test
+    
+	@Test
     @Transactional
     @Rollback()
     public void testQueBusqueTodasLasFarmaciasQueAtiendenLosMartes(){//Ejercicio 2
@@ -32,13 +34,54 @@ public class TestTP1 extends SpringTest {
         Farmacia farmaciaMartes2 = new Farmacia("Farmacia atendemos los jueves", "Martes");
         getSession().save(farmaciaMartes2);
 
-        List <Farmacia> farmacias = getSession().createCriteria(Farmacia.class)
-                .add(Restrictions.eq("diaDeTurno","Martes")).list();
+        List <Farmacia> farmacias = getSession().createCriteria(Farmacia.class).add(Restrictions.eq("diaDeTurno","Martes")).list();
 
         assertThat(farmacias.size(), is(2));
     }
+    
+    
 
-    @Test
+	@Test
+    @Transactional
+    @Rollback()
+    public void testQueBusqueTodasLasFarmaciasdeUnaCalle(){//Ejercicio 3
+        Direccion direccion1 = new Direccion();
+        direccion1.setCalle("Peru");
+        direccion1.setNumero("1169");
+        getSession().save(direccion1);
+        
+        Farmacia farmacia1 = new Farmacia();
+        farmacia1.setDireccion(direccion1);
+        getSession().save(farmacia1);
+
+        Direccion direccion2 = new Direccion();
+        direccion2.setCalle("Laguna");
+        direccion2.setNumero("1258");
+        getSession().save(direccion2);
+        
+        Farmacia farmacia2 = new Farmacia();
+        farmacia2.setDireccion(direccion2);
+        getSession().save(farmacia2);
+        
+        Direccion direccion3 = new Direccion();
+        direccion3.setCalle("Peru");
+        direccion3.setNumero("1258");
+        getSession().save(direccion3);
+
+        Farmacia farmacia3 = new Farmacia();
+        farmacia3.setDireccion(direccion3);
+        getSession().save(farmacia3);
+
+        List <Farmacia> farmacias = getSession().createCriteria(Farmacia.class)
+                .createAlias("direccion", "dir")
+                .add(Restrictions.eq("dir.calle", "Peru"))
+                .list();
+        assertThat(farmacias.size(), is(2));
+    }
+    
+    
+
+	@Test
     @Transactional
     @Rollback()
     public void testQueBusqueTodasLasFarmaciasdeUnBarrio(){//Ejercicio 4
@@ -80,4 +123,7 @@ public class TestTP1 extends SpringTest {
         assertThat(farmacias.size(), is(3));
         //assertThat(farmacias.get(0).getPrecio(), lessThan(1000f));
     }
+    
+    
+    
 }
