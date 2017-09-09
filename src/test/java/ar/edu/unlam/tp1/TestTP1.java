@@ -17,7 +17,6 @@ import static org.hamcrest.Matchers.is;
 
 public class TestTP1 extends SpringTest {
 
-    
 	@Test
     @Transactional
     @Rollback()
@@ -38,8 +37,6 @@ public class TestTP1 extends SpringTest {
 
         assertThat(farmacias.size(), is(2));
     }
-    
-    
 
 	@Test
     @Transactional
@@ -78,8 +75,6 @@ public class TestTP1 extends SpringTest {
                 .list();
         assertThat(farmacias.size(), is(2));
     }
-    
-    
 
 	@Test
     @Transactional
@@ -123,7 +118,4 @@ public class TestTP1 extends SpringTest {
         assertThat(farmacias.size(), is(3));
         //assertThat(farmacias.get(0).getPrecio(), lessThan(1000f));
     }
-    
-    
-    
 }
