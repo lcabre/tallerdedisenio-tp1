@@ -13,8 +13,11 @@
 </head>
 <body>
 <h1>Hola ${nombre} </h1>
+
 <h1>${lista}</h1>
+
 <h1>${lista.get(1)}</h1>
+
 <c:forEach var="objeto" items="${lista}">
     <h1>${objeto}</h1>
 </c:forEach>

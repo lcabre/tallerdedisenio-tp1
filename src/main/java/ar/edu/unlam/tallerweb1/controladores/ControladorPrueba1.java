@@ -2,7 +2,9 @@ package ar.edu.unlam.tallerweb1.controladores;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import ar.edu.unlam.tallerweb1.modelo.Usuario;
@@ -28,12 +30,22 @@ public class ControladorPrueba1 {
 
         modelo.put("lista",lista);
         return new ModelAndView("miprimerejemplo", modelo);
-        
-        
-   
     }
-    
-    
+
+    /*@RequestMapping("/usuario") {
+    public ModelAndView getUsuario1(@RequestParam("id") Integer id){
+        //hago algo
+        return null;
+    }
+    }*/
+
+
+    @RequestMapping("usuario/{id}")//recibo la variable en el path
+    public ModelAndView getUsuario(@PathVariable Integer id){
+        //hago algo
+        return null;
+    }
+
     @RequestMapping("/prueba-usuario")
     public ModelAndView pruebaDeUsuario(){
 

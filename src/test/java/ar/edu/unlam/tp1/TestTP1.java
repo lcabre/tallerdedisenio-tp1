@@ -30,10 +30,12 @@ public class TestTP1 extends SpringTest {
         Farmacia farmaciaMiercoles = new Farmacia("Farmacia atendemos los miercoles", "Miercoles");
         getSession().save(farmaciaMiercoles);
 
-        Farmacia farmaciaMartes2 = new Farmacia("Farmacia atendemos los jueves", "Martes");
+        Farmacia farmaciaMartes2 = new Farmacia("Farmacia atendemos los martes tambien", "Martes");
         getSession().save(farmaciaMartes2);
 
-        List <Farmacia> farmacias = getSession().createCriteria(Farmacia.class).add(Restrictions.eq("diaDeTurno","Martes")).list();
+        List farmacias = getSession().createCriteria(Farmacia.class)
+            .add(Restrictions.eq("diaDeTurno","Martes"))
+            .list();
 
         assertThat(farmacias.size(), is(2));
     }
@@ -69,10 +71,11 @@ public class TestTP1 extends SpringTest {
         farmacia3.setDireccion(direccion3);
         getSession().save(farmacia3);
 
-        List <Farmacia> farmacias = getSession().createCriteria(Farmacia.class)
-                .createAlias("direccion", "dir")
-                .add(Restrictions.eq("dir.calle", "Peru"))
-                .list();
+        List farmacias = getSession().createCriteria(Farmacia.class)
+            .createAlias("direccion", "dir")
+            .add(Restrictions.eq("dir.calle", "Peru"))
+            .list();
+
         assertThat(farmacias.size(), is(2));
     }
 
@@ -104,18 +107,17 @@ public class TestTP1 extends SpringTest {
         getSession().save(direccionFarmaciaMiercoles);
         farmaciaMiercoles.setDireccion(direccionFarmaciaMiercoles);
 
-        Farmacia farmaciaMartes2 = new Farmacia("Farmacia atendemos los jueves", "Martes");
+        Farmacia farmaciaMartes2 = new Farmacia("Farmacia atendemos los martes tambien", "Martes");
         getSession().save(farmaciaMartes2);
-        Direccion direccionFarmaciaMartes2 = new Direccion("Pepe", "985", barrio2);
+        Direccion direccionFarmaciaMartes2 = new Direccion("Corrientes", "985", barrio2);
         getSession().save(direccionFarmaciaMartes2);
         farmaciaMartes2.setDireccion(direccionFarmaciaMartes2);
 
-        List <Farmacia> farmacias = getSession().createCriteria(Farmacia.class)
-                .createAlias("direccion", "dir")
-                .createAlias("dir.barrio", "bar")
-                .add(Restrictions.eq("bar.nombre","Constitucion")).list();
+        List farmacias = getSession().createCriteria(Farmacia.class)
+            .createAlias("direccion", "dir")
+            .createAlias("dir.barrio", "bar")
+            .add(Restrictions.eq("bar.nombre","Constitucion")).list();
 
         assertThat(farmacias.size(), is(3));
-        //assertThat(farmacias.get(0).getPrecio(), lessThan(1000f));
     }
 }
