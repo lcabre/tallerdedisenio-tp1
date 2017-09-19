@@ -1,4 +1,4 @@
-**PRIMER ENTRETA TP 1 - TALLER DE DISEÑO**
+**PRIMER ENTREGA TP 1 - TALLER DE DISEÑO / TALLER WEB I**
 
 Para testear el punto 5 se puede probar con las siguientes direcciones para un resultado válido
 
