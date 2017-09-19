@@ -9,7 +9,6 @@ import org.junit.Test;
 import org.springframework.test.annotation.Rollback;
 import org.springframework.transaction.annotation.Transactional;
 
-
 import java.util.List;
 
 import static org.hamcrest.MatcherAssert.assertThat;
