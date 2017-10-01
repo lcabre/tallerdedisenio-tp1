@@ -39,7 +39,6 @@ public class ControladorPrueba1 {
     }
     }*/
 
-
     @RequestMapping("usuario/{id}")//recibo la variable en el path
     public ModelAndView getUsuario(@PathVariable Integer id){
         //hago algo
