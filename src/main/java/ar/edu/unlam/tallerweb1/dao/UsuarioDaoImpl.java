@@ -7,6 +7,7 @@ import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
 
 import javax.inject.Inject;
+import java.util.List;
 
 // implelemtacion del DAO de usuarios, la anotacion @Repository indica a Spring que esta clase es un componente que debe
 // ser manejado por el framework, debe indicarse en applicationContext que busque en el paquete ar.edu.unlam.tallerweb1.dao
@@ -30,6 +31,14 @@ public class UsuarioDaoImpl implements UsuarioDao {
 				.add(Restrictions.eq("email", usuario.getEmail()))
 				.add(Restrictions.eq("password", usuario.getPassword()))
 				.uniqueResult();
+	}
+
+	@Override
+	@SuppressWarnings("Unchecked")
+	public List<Usuario> listarSexo(String sexo) {
+		final Session session = sessionFactory.getCurrentSession();
+		return (List<Usuario>) session.createCriteria(Usuario.class)
+				.add(Restrictions.eq("sexo", "F")).list();
 	}
 
 }

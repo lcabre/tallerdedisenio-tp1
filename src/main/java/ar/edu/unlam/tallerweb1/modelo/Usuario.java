@@ -20,6 +20,7 @@ public class Usuario {
 	private String email;
 	private String password;
 	private String rol;
+	private String sexo;
 	
 	public Long getId() {
 		return id;
@@ -38,6 +39,13 @@ public class Usuario {
 	}
 	public void setPassword(String password) {
 		this.password = password;
+	}
+	public String getSexo() {
+		return sexo;
+	}
+
+	public void setSexo(String sexo) {
+		sexo = sexo;
 	}
 
 	public String getRol() {
